@@ -1,0 +1,27 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
+ninja_required_version = 1.5
+include rules.ninja
+include target.ninja
+
+shell = cmd /c
+bashshell = C:\tizen-studio\tools\msys2\usr\bin\sh.exe
+builddir = ../Debug
+sareportdir = ../SA_Report
+sa_checkers = cplusplus,core,deadcode,resourceLeak,security,unix
+coveragedir = ../Coverage_Report
+
+subninja ../Debug/src/subdir.ninja
+
+targettool = clang++.exe
+targetflags =  -L"../lib" -target i386-tizen-linux-gnueabi -gcc-toolchain "C:\tizen-studio\tools\smart-build-interface/../i386-linux-gnueabi-gcc-4.9/" -ccc-gcc-name i386-linux-gnueabi-g++ -march=i386 -Xlinker --as-needed  -pie -lpthread --sysroot="C:/tizen-studio/tools/smart-build-interface/../../platforms/tizen-2.4/mobile/rootstraps/mobile-2.4-emulator.core" -Xlinker --version-script="../.exportMap" -L"C:/tizen-studio/tools/smart-build-interface/../../platforms/tizen-2.4/mobile/rootstraps/mobile-2.4-emulator.core/usr/lib" -lBrokenLocale -laccounts-svc -lanl -lappcore-agent -lattach-panel -lbadge -lbase-utils-i18n -lbundle -lcairo -lcalendar-service2 -lcapi-appfw-alarm -lcapi-appfw-app-common -lcapi-appfw-app-control -lcapi-appfw-application -lcapi-appfw-app-manager -lcapi-appfw-event -lcapi-appfw-package-manager -lcapi-appfw-preference -lcapi-appfw-widget-application -lcapi-base-common -lcapi-content-media-content -lcapi-content-mime-type -lcapi-data-control -lcapi-geofence-manager -lcapi-location-manager -lcapi-maps-service -lcapi-media-audio-io -lcapi-media-camera -lcapi-media-codec -lcapi-media-controller -lcapi-media-image-util -lcapi-media-metadata-editor -lcapi-media-metadata-extractor -lcapi-media-player -lcapi-media-radio -lcapi-media-recorder -lcapi-media-screen-mirroring -lcapi-media-sound-manager -lcapi-media-thumbnail-util -lcapi-media-tone-player -lcapi-media-tool -lcapi-media-video-util -lcapi-media-vision -lcapi-media-wav-player -lcapi-message-port -lcapi-messaging-email -lcapi-messaging-messages -lcapi-network-bluetooth -lcapi-network-connection -lcapi-network-nfc -lcapi-network-smartcard -lcapi-network-wifi -lcapi-system-device -lcapi-system-info -lcapi-system-media-key -lcapi-system-runtime-info -lcapi-system-sensor -lcapi-system-system-settings -lcapi-telephony -lcapi-ui-efl-util -lcapi-ui-inputmethod-manager -lcapi-ui-inputmethod -lcapi-web-url-download -lcidn -lcontacts-service2 -lcontext -lcore-context-manager -lcore-sync-client -lcrypto -lcrypt -lc -lcurl -ldali-adaptor -ldali-core -ldali-toolkit -ldlog -ldl -lebluez -leconnman0_7x -lecore_buffer -lecore_con -lecore_evas -lecore_file -lecore_imf_evas -lecore_imf -lecore_input_evas -lecore_input -lecore_ipc -lecore -lecore_x -ledbus -ledje -leet -lefl-extension -lefreet_mime -lefreet -lefreet_trash -lehal -leina -leio -lelementary -lembryo -lenotify -leofono -leom -leo -lethumb_client -lethumb -leukit -levas -lewebkit2 -lexif -lfeedback -lfontconfig -lfreetype -lgio-2.0 -lglib-2.0 -lgmodule-2.0 -lgobject-2.0 -lgthread-2.0 -lharfbuzz-icu -lharfbuzz -ljson-glib-1.0 -lkey-manager-client -lminicontrol-provider -lminicontrol-viewer -lminizip -lm -lnotification -lnsl -lnss_compat -lnss_dns -lnss_files -lnss_hesiod -lnss_nisplus -lnss_nis -loauth2 -loauth -lopenal -lphonenumber-utils -lprivilege-info -lpthread -lpush -lresolv -lrt -lservice-adaptor-client -lshortcut -lsqlite3 -lssl -lstorage -lstt -ltbm -lthread_db -lttrace -ltts -lutil -lvc-elm -lvc -lwidget_service -lwidget_viewer_evas -lwifi-direct -lxml2 -lz -Xlinker -rpath="//opt/usr/apps/org.example.iotjoussetluinogrotzky/lib" -Werror-implicit-function-declaration
+
+build iotjoussetluinogrotzky: build_target src/iotjoussetluinogrotzky.o 
+build ast: phony src/iotjoussetluinogrotzky.o.ast
+build externalFnMap.txt: fast_ext_fn src/iotjoussetluinogrotzky.o.ast
+build sa: phony $sareportdir/src/iotjoussetluinogrotzky.o.xml
+build apichecker: unusedapi_rule src/iotjoussetluinogrotzky.o.txt
+build cov: cov_report $coveragedir/src/iotjoussetluinogrotzky.o.cov
+
