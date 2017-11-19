@@ -1,3 +1,4 @@
+#include "api.h"
 #include "iotjoussetluinogrotzky.h"
 
 typedef struct appdata {
@@ -70,6 +71,7 @@ app_create(void *data)
 	appdata_s *ad = data;
 
 	create_base_gui(ad);
+	getDataByCityName("Moscow");
 
 	return true;
 }
@@ -171,3 +173,5 @@ main(int argc, char *argv[])
 
 	return ret;
 }
+
+
