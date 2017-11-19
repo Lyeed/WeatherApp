@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document>
+	<mscreen>
+		<configuration device="HD" id="config1" name="common"
+			orientation="portrait" type="common" />
+	</mscreen>
+	<views startup="view1">
+		<view id="view1" indicator="true" screen_orientation="full_sensor"
+			type="view" page_location_x="0" page_location_y="0">
+			<box homogeneous="false" align_h="fill" align_v="fill" visible="true"
+				weight_v="1" padding_v="0" id="box1" padding_h="0" weight_h="1"
+				direction="vertical">
+				<label align_h="fill" wrap_width="0" align_v="fill" visible="true"
+					weight_v="1" line_wrap="none" id="label2" text="text" weight_h="1"
+					ellipsis="true"></label>
+			</box>
+		</view>
+	</views>
+</document>
