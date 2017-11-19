@@ -2,17 +2,29 @@
 <SignedInfo>
 <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"></CanonicalizationMethod>
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
-<Reference URI="bin%2Fiotjoussetluinogrotzky">
+<Reference URI="bin%2Ftouriste">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>R7MTI/xJOjU7IMeL/tbSSfMwhGnGHcQ8RN+M16v9iJ8=</DigestValue>
+<DigestValue>CUFMcJeZhhVrEfgflU60Lbj2/HAnV1gco6Hk+KZMEQY=</DigestValue>
 </Reference>
-<Reference URI="shared%2Fres%2Fiotjoussetluinogrotzky.png">
+<Reference URI="res%2Ftizen_blank_16.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>PJXZLMy+wHA5IHiu7n0sRxCTZbai4Ob9j01SQWKM7cY=</DigestValue>
+</Reference>
+<Reference URI="res%2Ftizen_blank_32.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>VMERsWMsSTr+NVV5yLVheDKHEydRxBt1ZqiXv9Pe3ko=</DigestValue>
+</Reference>
+<Reference URI="res%2Ftizen_blank_64.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>0ARvv3oS2bRH8GYsM+sAupHvzrjekFu80mbIVRELUc4=</DigestValue>
+</Reference>
+<Reference URI="shared%2Fres%2Ftouriste.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>1d0oEZHqPn+QzNzGIHwj9ODby6x9ggFs9uOsav6jPNs=</DigestValue>
 </Reference>
 <Reference URI="tizen-manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>nThTpqluoIHMD6l2XYiqBPjezMk7K1zr7/7h66kQZPk=</DigestValue>
+<DigestValue>mEfEEwh3XCuLou+cX2NbHZheLZrT7fmH3S/njO1k+rM=</DigestValue>
 </Reference>
 <Reference URI="#prop">
 <Transforms>
@@ -23,9 +35,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-Air+fniD8bdoN1NZgLL2fEsw/iGNqKby+LUwSnz6sCvHRpDD5u/AvvOWgeY/8AxlifLSkWj+eNlG
-3YFLVyvqfKSDJ5eeQsH0SRxajjYOmyaLF4iY7WHnyEv4UgSP6eJ/Wd5sGBuRwKOC4Ifq6d6ubAfk
-ZGAfqJ3Znz4WhDGdiug=
+UqdlrZFNLu7UWL6Yw2iV6q5ZxjE3B5JsfGEEt1Kajrr0y4Lb/+1j2erxqEkszzdbqOVcMZmkhRJp
+iHzu3x6Ziz4Xkkz4q6q2wA3q48f0tM0NT53lZi77bz0FR9iZp5nQy+Sjpqf6x9vVnif0c+y7UEvS
+5t2t4411DzypwBvW+gY=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>IoTJoussetLuinoGrotzky</name>
+	<name>Geolocation</name>
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>org.tizen.nativecore.apichecker.apicheckerbuilder</name>
+			<name>org.tizen.efluibuilder.builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -27,11 +27,11 @@
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
-		<nature>org.tizen.nativecore.apichecker.apicheckernature</nature>
+		<nature>org.tizen.efluibuilder.nature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1510883566637</id>
+			<id>0</id>
 			<name></name>
 			<type>26</type>
 			<matcher>
@@ -40,7 +40,7 @@
 			</matcher>
 		</filter>
 		<filter>
-			<id>1510883566653</id>
+			<id>0</id>
 			<name></name>
 			<type>6</type>
 			<matcher>

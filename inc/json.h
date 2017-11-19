@@ -3,6 +3,7 @@
 
 #include <json-glib/json-glib.h>
 #include <glib-object.h>
+#include "app_main.h"
 
 JsonObject *parse(char *string);
 

@@ -3,6 +3,7 @@
 
 #include <curl/curl.h>
 #include <net_connection.h>
+#include "app_main.h"
 
 struct MemoryStruct {
   char *memory;

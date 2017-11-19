@@ -6,6 +6,14 @@
 #include "g_inc_uib.h"
 #include "uib_views.h"
 #include "geolocation.h"
+#include "api.h"
+#include <app.h>
+#include <Elementary.h>
+#include <system_settings.h>
+#include <efl_extension.h>
+#include <dlog.h>
+#include <string.h>
+
 
 /**
  * @brief Forward declaration of model

@@ -1,7 +1,4 @@
 #include "api.h"
-#include "curl.h"
-#include "json.h"
-#include "iotjoussetluinogrotzky.h"
 
 JsonObject *getDataByCityName(char *city)
 {
@@ -21,6 +18,7 @@ JsonObject *getDataByCityName(char *city)
 
 		dlog_print(DLOG_DEBUG, "IOT", "City : %s", json_object_get_string_member(parser, "name"));
 		dlog_print(DLOG_DEBUG, "IOT", "Id : %d", json_object_get_int_member(parser, "id"));
+		//get_object_
 
 		return parser;
 	}

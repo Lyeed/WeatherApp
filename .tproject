@@ -7,6 +7,6 @@
     </platforms>
     <package>
         <blacklist/>
+        <resFallback autoGen="true"/>
     </package>
-    <canUsePrebuiltIndex value="true"/>
 </tproject>

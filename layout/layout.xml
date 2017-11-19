@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document>
+	<mscreen>
+		<configuration device="HD" id="config1" name="common"
+			orientation="portrait" type="common" />
+	</mscreen>
+	<views startup="view1">
+		<view id="view1" indicator="true" screen_orientation="full_sensor"
+			type="view" page_location_x="-5" page_location_y="-9">
+			<grid align_h="fill" vsize_w="1000" align_v="fill" visible="true"
+				weight_v="1" id="grid1" weight_h="1" vsize_h="1000">
+				<entry context_menu="true" align_v="fill" visible="true"
+					weight_v="1" editable="true" scroll="false" weight_h="1"
+					single_line="true" align_h="fill" password="false"
+					file_text_format="markup_utf8" disable="false" id="entry1"
+					text="Enter City's name" pack_x="47" pack_y="32" pack_w="671"
+					pack_h="81">
+					<event function_name="view1_entry1_onclicked" signal="clicked" />
+				</entry>
+				<button align_v="fill" visible="true" weight_v="1" weight_h="1"
+					align_h="fill" disable="false" style="default" id="button1" text="Search"
+					pack_x="735" pack_y="29" pack_w="210" pack_h="86">
+					<event function_name="view1_button1_onclicked" signal="clicked" />
+				</button>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					weight_h="1" ellipsis="true" align_h="fill" wrap_width="0" id="label1"
+					text="Weather" pack_x="100" pack_y="200" pack_w="139" pack_h="40"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					weight_h="1" ellipsis="true" align_h="fill" wrap_width="0" id="weather"
+					text="" pack_x="400" pack_y="200" pack_w="139" pack_h="39"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					id="description" text="" pack_x="100" pack_y="300" pack_w="140"
+					pack_h="40"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="42" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="211" pack_x="100" pack_y="400" id="label5" text="Temperature"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="400" pack_y="400" id="temperature" text=""></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="40" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="207" pack_x="100" pack_y="500" id="label7" text="Pressure"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="400" pack_y="500" id="pressure" text=""></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="44" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="230" pack_x="100" pack_y="600" id="Label9" text="Humidity"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="400" pack_y="600" id="humidity" text=""></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="45" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="100" pack_y="700" id="label11" text="Wind"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="400" pack_y="700" id="wind" text=""></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="39" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="100" pack_y="800" id="label13" text="Visibility"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="140" pack_x="400" pack_y="800" id="visibility" text=""></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="198" pack_x="200" pack_y="900" id="sunUp" text=""></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="197" pack_x="600" pack_y="900" id="sunDown"></label>
+			</grid>
+		</view>
+	</views>
+</document>
