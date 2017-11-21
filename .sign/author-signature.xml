@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin%2Ftouriste">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>BcMjPucI9wf7Kby8G+5ZqeL5nG7dd1oBHCqR1BRVZe8=</DigestValue>
+<DigestValue>nHjud4rHUoamsETruGOhpzVgrBp+mTbHYVPFUTWPmKI=</DigestValue>
 </Reference>
 <Reference URI="res%2Ftizen_blank_16.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -35,9 +35,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-CNzZyIuCAJZFAkbKrYGD1l4CsTyzfJBhRDx7T3BJZfyV4hTEoBiBuj1u951QhE+Sf8siXroesIY3
-tbY/7IsPqhtyN03PYNLuKEeepdxuGqDysGnvQqXN7gWDvhS4U8goiGF0cDdsnen2+cXSSCqM3u+z
-FAorWw09lJww3bhp5Wg=
+UyG51vL5LsYGbDSFsCmXio7JJpw8+n8VT9qbtPed1Ap0fFgTQGJw/zgk1y//VDg6i8PPRaLSuIjn
+KOBx+vFBbL8M58P6WAvJGxOxxfRh4xNynA83y+1JfStOSXT8GI/ajhNP2PXtr+DQcdzy0BsYKSIH
+go8UIPEU0ILjG19ZOBQ=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

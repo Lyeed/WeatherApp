@@ -42,7 +42,7 @@ char *my_getString(int nb)
 		i = i * 10;
 		j++;
 	}
-	str = malloc(j + 1);
+	str = malloc(k + j + 1);
 	while (nb > 0)
 	{
 		str[k++] = (nb / i) + '0';
@@ -57,21 +57,23 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
 	char *name_city = NULL;
 
 	name_city = strdup(elm_object_text_get(vc->entry1));
-	if (name_city == NULL)
+	if (name_city == NULL || !strcmp(name_city, ""))
 		return;
-
 	JsonObject *json = getDataByCityName(name_city);
+	if (json == NULL)
+		return;
 
 	JsonObject *main = json_object_get_object_member(json, "main");
 	int temp = json_object_get_int_member(main, "temp");
-	elm_object_text_set(vc->temperature, my_getString(temp));
+
+	elm_object_text_set(vc->temperature, strcat(my_getString(temp - 273), "°C"));
 	int pres = json_object_get_int_member(main, "pressure");
-	elm_object_text_set(vc->pressure, my_getString(pres));
+	elm_object_text_set(vc->pressure, strcat(my_getString(pres), "hPa"));
 	int humi = json_object_get_int_member(main, "humidity");
-	elm_object_text_set(vc->humidity, my_getString(humi));
+	elm_object_text_set(vc->humidity, strcat(my_getString(humi), "%"));
 
 	int visi = json_object_get_int_member(json, "visibility");
-	elm_object_text_set(vc->visibility, my_getString(visi));
+	elm_object_text_set(vc->visibility, strcat(my_getString(visi), "000m"));
 
 	JsonObject *sys = json_object_get_object_member(json, "sys");
 	int sunrise = json_object_get_int_member(sys, "sunrise");
@@ -92,5 +94,18 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
  */
 void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
 	elm_object_text_set(vc->entry1, "");
+}
+
+/**
+ * @brief the user clicked the button (press/release).
+ *
+ * @param vc It is context of the view that this event occurred on. It has all of UI components that this view consist of.
+ * @param obj It is UI component itself that emits the event signal.
+ * @param event_info
+ * 		event_info is NULL
+ *
+ */
+void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
+
 }
 
