@@ -8,6 +8,7 @@
 #include "uib_app_manager.h"
 #include "uib_views.h"
 #include "uib_views_inc.h"
+#include <locations.h>
 #include <stdio.h>
 
 typedef struct _uib_view1_control_context {
@@ -29,20 +30,22 @@ char *my_getString(int nb)
 {
 	char *str = NULL;
 	int i = 1;
-	int j = 1;
 	int k = 0;
 	int x = nb;
 
+	str = malloc(4096);
 	if (nb < 0)
+	{
 		str[k++] = '-';
-
+		nb = -nb;
+	}
 	while (x > 9)
 	{
 		x = x / 10;
 		i = i * 10;
-		j++;
 	}
-	str = malloc(k + j + 1);
+	if (str == NULL)
+		return NULL;
 	while (nb > 0)
 	{
 		str[k++] = (nb / i) + '0';
@@ -53,35 +56,159 @@ char *my_getString(int nb)
 	return str;
 }
 
-void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+char *double_to_str(double d)
 {
-	Elm_Object_Item *selected = elm_list_selected_item_get(vc->list3);
-	const char *sel = elm_object_item_data_get(selected);
-	dlog_print(DLOG_DEBUG, "IOT", "Item selected : %s | Data : %s", elm_object_item_text_get(selected), sel);
-	evas_object_hide(vc->list3);
+	char *str = malloc(4096);
+	char buff[50];
 
-	JsonObject *json = getDataByCityName(sel);
+	sprintf(buff, "%f", d);
+	strcpy(str, buff);
+	return str;
+}
+
+void make_design(uib_view1_view_context *vc, char *weather)
+{
+	char *file_path = malloc(4096);
+	char *file_name = malloc(4096);
+
+	strcpy(file_path, app_get_resource_path());
+
+	if ((strcmp(weather, "Mist") == 0) || (strcmp(weather, "Fog") == 0))
+	{
+		strcpy(file_name, "misty.jpg");
+	}
+
+	else if (strcmp(weather, "Clouds") == 0)
+	{
+		strcpy(file_name, "cloudy.jpg");
+	}
+
+	else if (strcmp(weather, "Rain") == 0 || strcmp(weather, "Drizzle") == 0)
+	{
+		strcpy(file_name, "rainy.jpg");
+	}
+
+	else if (strcmp(weather, "Snow") == 0)
+	{
+		strcpy(file_name, "snowy.jpg");
+	}
+
+	else if (strcmp(weather, "Sun") == 0 || strcmp(weather, "Clear") == 0)
+	{
+		strcpy(file_name, "sunny.jpg");
+	}
+
+	else if (strcmp(weather, "Storm") == 0)
+	{
+		strcpy(file_name, "stormy.jpg");
+	}
+
+	strcat(file_path, file_name);
+	elm_bg_file_set(vc->bg1, file_path, "scale");
+}
+
+void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
+	char *name_city = NULL;
+
+	evas_object_hide(vc->list3);
+	evas_object_show(vc->temp);
+	evas_object_show(vc->clou);
+	evas_object_show(vc->humi);
+	evas_object_show(vc->pres);
+	evas_object_show(vc->visi);
+	evas_object_show(vc->win);
+	evas_object_show(vc->bg3);
+	evas_object_show(vc->bg4);
+	evas_object_show(vc->bg5);
+	evas_object_show(vc->bg6);
+	evas_object_show(vc->bg7);
+	evas_object_show(vc->bg8);
+	evas_object_show(vc->bg9);
+	name_city = malloc(4096);
+	strcpy(name_city, elm_object_text_get(vc->entry1));
+	if (name_city == NULL || !strcmp(name_city, ""))
+		return;
+	elm_object_text_set(vc->description, name_city);
+	JsonObject *json = getDataByCityName(name_city);
 	if (json == NULL)
 		return;
+	if (json_object_get_string_member(json, "cod"))
+		if (strcmp(json_object_get_string_member(json, "cod"), "404") == 0)
+		{
+			strcat(name_city, " : city not found");
+			elm_object_text_set(vc->description, name_city);
+			elm_object_text_set(vc->temperature, "");
+			elm_object_text_set(vc->cloud, "");
+			elm_object_text_set(vc->wind, "");
+			elm_object_text_set(vc->pressure, "");
+			elm_object_text_set(vc->humidity, "");
+			elm_object_text_set(vc->visibility, "");
+			evas_object_hide(vc->temp);
+			evas_object_hide(vc->clou);
+			evas_object_hide(vc->humi);
+			evas_object_hide(vc->pres);
+			evas_object_hide(vc->visi);
+			evas_object_hide(vc->win);
+			evas_object_hide(vc->bg3);
+			evas_object_hide(vc->bg4);
+			evas_object_hide(vc->bg5);
+			evas_object_hide(vc->bg6);
+			evas_object_hide(vc->bg7);
+			evas_object_hide(vc->bg8);
+			elm_bg_file_set(vc->bg1, "", "scale");
+			return;
+		}
 
 	JsonObject *main = json_object_get_object_member(json, "main");
-	int temp = json_object_get_int_member(main, "temp");
+	if (main != NULL)
+	{
+		int temp = json_object_get_int_member(main, "temp");
+		temp -= 273;
+		if (my_getString(temp) != NULL)
+			elm_object_text_set(vc->temperature, strcat(my_getString(temp), "°C"));
 
-	elm_object_text_set(vc->temperature, strcat(my_getString(temp - 273), "°C"));
-	int pres = json_object_get_int_member(main, "pressure");
-	elm_object_text_set(vc->pressure, strcat(my_getString(pres), "hPa"));
-	int humi = json_object_get_int_member(main, "humidity");
-	elm_object_text_set(vc->humidity, strcat(my_getString(humi), "%"));
+		int pres = json_object_get_int_member(main, "pressure");
+		if (my_getString(pres) != NULL)
+			elm_object_text_set(vc->pressure, strcat(my_getString(pres), "hPa"));
 
+		int humi = json_object_get_int_member(main, "humidity");
+		if (my_getString(humi) != NULL)
+			elm_object_text_set(vc->humidity, strcat(my_getString(humi), "%"));
+	}
 	int visi = json_object_get_int_member(json, "visibility");
-	elm_object_text_set(vc->visibility, strcat(my_getString(visi), "000m"));
+	if (my_getString(visi) != NULL)
+		elm_object_text_set(vc->visibility, strcat(my_getString(visi), "km"));
 
-	JsonObject *sys = json_object_get_object_member(json, "sys");
-	int sunrise = json_object_get_int_member(sys, "sunrise");
-	elm_object_text_set(vc->sunUp, my_getString(sunrise));
-	int sunset = json_object_get_int_member(sys, "sunset");
-	elm_object_text_set(vc->sunDown, my_getString(sunset));
+	JsonObject *clo = json_object_get_object_member(json, "clouds");
+	if (clo != NULL)
+	{
+		int cloud = json_object_get_int_member(clo, "all");
+		if (my_getString(cloud) != NULL)
+			elm_object_text_set(vc->cloud, strcat(my_getString(cloud), "%"));
+	}
 
+	JsonObject *win = json_object_get_object_member(json, "wind");
+	if (win != NULL)
+	{
+		int wind = json_object_get_int_member(win, "speed");
+		if (my_getString(wind) != NULL)
+			elm_object_text_set(vc->wind, strcat(my_getString(wind), "km/h"));
+	}
+
+
+	JsonArray *weat = json_object_get_array_member(json, "weather");
+
+	if (weat != NULL)
+		if (json_array_get_object_element(weat, 0) != NULL)
+		{
+			JsonObject *w = json_array_get_object_element(weat, 0);
+			if (w != NULL)
+			{
+				elm_object_text_set(vc->description, json_object_get_string_member(w, "description"));
+				char *str_weather = strdup(json_object_get_string_member(w, "main"));
+				make_design(vc, str_weather);
+			}
+		}
 }
 
 /**
@@ -95,10 +222,7 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
  */
 void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
 {
-	if (strcmp(elm_object_text_get(vc->entry1), "Enter City's name") == 0)
-	{
-		elm_object_text_set(vc->entry1, "");
-	}
+	elm_object_text_set(vc->entry1, "");
 }
 
 /**
@@ -110,9 +234,43 @@ void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *
  * 		event_info is NULL
  *
  */
-void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
 
+static location_service_state_e state;
+
+static void __state_changed_cb(location_service_state_e s, void *user_data)
+{
+	state = s;
 }
+
+void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
+	location_manager_h manager;
+	double altitude;
+	double latitude;
+	double longitude;
+	double climb;
+	double direction;
+	double speed;
+	double horizontal;
+	double vertical;
+	location_accuracy_level_e level;
+	time_t timestamp;
+
+	location_manager_create(LOCATIONS_METHOD_GPS, &manager);
+	location_manager_set_service_state_changed_cb(manager, __state_changed_cb, NULL);
+	location_manager_start(manager);
+	if (state == LOCATIONS_SERVICE_ENABLED) {
+		location_manager_get_location(manager, &altitude, &latitude, &longitude,
+				&climb, &direction, &speed, &level, &horizontal,
+				&vertical, &timestamp);
+	dlog_print(DLOG_DEBUG, "GEOLOCATION", "latitude : %f", latitude);
+	dlog_print(DLOG_DEBUG, "GEOLOCATION", "longitude : %f", longitude);
+	dlog_print(DLOG_DEBUG, "GEOLOCATION", "altitude : %f", altitude);
+	dlog_print(DLOG_DEBUG, "GEOLOCATION", "climb : %f", climb);
+	dlog_print(DLOG_DEBUG, "GEOLOCATION", "dir : %f", direction);
+	dlog_print(DLOG_DEBUG, "GEOLOCATION", "vert : %f", vertical);
+	}
+}
+
 /**
  * @brief The text within the entry was changed because of user interaction.
  *
@@ -122,15 +280,7 @@ void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, v
  * 		Elm_Entry_Change_Info *entry_change_info = (Elm_Entry_Change_Info *) event_info;
  *
  */
-void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
-{
-/*	if (citiesThread)
-	{
-		if (ecore_thread_cancel(citiesThread) == EINA_FALSE)
-		{
-			dlog_print(DLOG_ERROR, "IOT", "Can't stop thread on user text changed");
-		}
-	}*/
+void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)  {
 	citiesList_search(elm_object_text_get(vc->entry1), vc);
 }
 
