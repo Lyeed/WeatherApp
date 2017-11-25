@@ -57,6 +57,8 @@
 					text="Enter City's name" pack_x="50" pack_y="30" pack_w="595"
 					pack_h="80">
 					<event function_name="view1_entry1_onclicked" signal="clicked" />
+					<event function_name="view1_entry1_onchanged_user" signal="changed,user" />
+					<event function_name="view1_entry1_onfocused" signal="focused" />
 				</entry>
 				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
 					pack_h="40" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
@@ -73,15 +75,11 @@
 				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
 					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
 					pack_w="140" pack_x="400" pack_y="800" id="visibility" text=""></label>
-				<list scrollbar_v="auto" align_v="fill" visible="true"
+				<list scrollbar_v="false" align_v="fill" visible="false"
 					weight_v="1" weight_h="1" mode="scroll" scrollbar_h="auto" align_h="fill"
 					select_mode="default" multi_select="false" disable="false" id="list3"
-					pack_x="50" pack_y="110" pack_w="667" pack_h="489">
-					<listitem id="listitem1" text="List item" selected="false"></listitem>
-					<listitem id="listitem2" text="List item" selected="false"></listitem>
-					<listitem id="listitem3" text="List item" selected="false"></listitem>
-					<listitem id="listitem4" text="List item" selected="false"></listitem>
-					<listitem id="listitem5" text="List item" selected="false"></listitem>
+					pack_x="50" pack_y="110" pack_w="667" pack_h="605">
+					<event function_name="view1_list3_onitem_focused" signal="item,focused" />
 				</list>
 			</grid>
 		</view>

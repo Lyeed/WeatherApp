@@ -53,13 +53,14 @@ char *my_getString(int nb)
 	return str;
 }
 
-void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
-	char *name_city = NULL;
+void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+{
+	Elm_Object_Item *selected = elm_list_selected_item_get(vc->list3);
+	const char *sel = elm_object_item_data_get(selected);
+	dlog_print(DLOG_DEBUG, "IOT", "Item selected : %s | Data : %s", elm_object_item_text_get(selected), sel);
+	evas_object_hide(vc->list3);
 
-	name_city = strdup(elm_object_text_get(vc->entry1));
-	if (name_city == NULL || !strcmp(name_city, ""))
-		return;
-	JsonObject *json = getDataByCityName(name_city);
+	JsonObject *json = getDataByCityName(sel);
 	if (json == NULL)
 		return;
 
@@ -92,8 +93,12 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
  * 		event_info is NULL
  *
  */
-void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
-	elm_object_text_set(vc->entry1, "");
+void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+{
+	if (strcmp(elm_object_text_get(vc->entry1), "Enter City's name") == 0)
+	{
+		elm_object_text_set(vc->entry1, "");
+	}
 }
 
 /**
@@ -108,4 +113,44 @@ void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *
 void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
 
 }
+/**
+ * @brief The text within the entry was changed because of user interaction.
+ *
+ * @param vc It is context of the view that this event occurred on. It has all of UI components that this view consist of.
+ * @param obj It is UI component itself that emits the event signal.
+ * @param event_info
+ * 		Elm_Entry_Change_Info *entry_change_info = (Elm_Entry_Change_Info *) event_info;
+ *
+ */
+void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
+	citiesList_search(elm_object_text_get(vc->entry1), vc);
+}
 
+/**
+ * @brief The entry has received focus.
+ *
+ * @param vc It is context of the view that this event occurred on. It has all of UI components that this view consist of.
+ * @param obj It is UI component itself that emits the event signal.
+ * @param event_info
+ * 		event_info is NULL
+ *
+ */
+void view1_entry1_onfocused(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
+	evas_object_show(vc->list3);
+}
+
+/**
+ * @brief When the list item has received focus. (since 1.10)
+ *
+ * @param vc It is context of the view that this event occurred on. It has all of UI components that this view consist of.
+ * @param obj It is UI component itself that emits the event signal.
+ * @param event_info
+ * 		Elm_Object_Item *list_item = (Elm_Object_Item *) event_info;
+ *
+ */
+void view1_list3_onitem_focused(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+{
+	Elm_Object_Item *selected = (Elm_Object_Item *)event_info;
+	const char *sel = elm_object_item_data_get(selected);
+	elm_object_text_set(vc->entry1, sel);
+}
