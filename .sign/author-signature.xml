@@ -4,7 +4,31 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin%2Ftouriste">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>nHjud4rHUoamsETruGOhpzVgrBp+mTbHYVPFUTWPmKI=</DigestValue>
+<DigestValue>5ch6MlBApo+4Fz1OagxiYFd03lkn5T36DExobTWU82c=</DigestValue>
+</Reference>
+<Reference URI="res%2Fcloudy.jpg">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>QSWCpBXUB0EKA75n5b9HctKJDtTHsKPg6hTVLIFofuA=</DigestValue>
+</Reference>
+<Reference URI="res%2Fmisty.jpg">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>IojFjUgHWz/q5lQ3d0nMkaXUikevtg6XeGRoVyLD6TM=</DigestValue>
+</Reference>
+<Reference URI="res%2Frainy.jpg">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>Z0RpYoPVotx+CqmZ1jukaWBYCkYWMYhZHiGtUwE7kIY=</DigestValue>
+</Reference>
+<Reference URI="res%2Fsnowy.jpg">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>W+dX6qThdmKLCAQyIoxwTJmuz3bhE8tYMTv2WMGC0As=</DigestValue>
+</Reference>
+<Reference URI="res%2Fstormy.jpg">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>IaX10z5TiQhqQZGG5PWsAYSzvie7FHTK4h11HC0+QiA=</DigestValue>
+</Reference>
+<Reference URI="res%2Fsunny.jpg">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>5S7/SnAH89VEHX2Qho8+41qIkh2Mm8u9SFMorGJwqf0=</DigestValue>
 </Reference>
 <Reference URI="res%2Ftizen_blank_16.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -24,7 +48,7 @@
 </Reference>
 <Reference URI="tizen-manifest.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>mEfEEwh3XCuLou+cX2NbHZheLZrT7fmH3S/njO1k+rM=</DigestValue>
+<DigestValue>rjbCpcUQ8eoPpr37m60cD4fum+pK2j4sbj0rkuJhaus=</DigestValue>
 </Reference>
 <Reference URI="#prop">
 <Transforms>
@@ -35,9 +59,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-UyG51vL5LsYGbDSFsCmXio7JJpw8+n8VT9qbtPed1Ap0fFgTQGJw/zgk1y//VDg6i8PPRaLSuIjn
-KOBx+vFBbL8M58P6WAvJGxOxxfRh4xNynA83y+1JfStOSXT8GI/ajhNP2PXtr+DQcdzy0BsYKSIH
-go8UIPEU0ILjG19ZOBQ=
+LITXtALeT1cttG64G2eF6B2dLyDvx10FHgipx4Til8x2A0UR6MkH5oLiPqeCGGPNPpWFcPQNL5cp
+z/CnshwZu+tQII5pLBKOuPSK5Oytmbq9ZdexHBHMI9tPMjDD7Yal0km2en5YZMqpvh1t124q/zKs
+UP9ShIXqMfvuGmChHfM=
 </SignatureValue>
 <KeyInfo>
 <X509Data>
