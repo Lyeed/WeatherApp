@@ -13,7 +13,6 @@
 
 typedef struct _uib_view1_control_context {
 	/* add your variables here */
-
 } uib_view1_control_context;
 
 /**
@@ -107,9 +106,8 @@ void make_design(uib_view1_view_context *vc, char *weather)
 	elm_bg_file_set(vc->bg1, file_path, "scale");
 }
 
-void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
-	char *name_city = NULL;
-
+void update_view(uib_view1_view_context *vc)
+{
 	evas_object_hide(vc->list3);
 	evas_object_show(vc->temp);
 	evas_object_show(vc->clou);
@@ -124,19 +122,27 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
 	evas_object_show(vc->bg7);
 	evas_object_show(vc->bg8);
 	evas_object_show(vc->bg9);
-	name_city = malloc(4096);
-	strcpy(name_city, elm_object_text_get(vc->entry1));
-	if (name_city == NULL || !strcmp(name_city, ""))
-		return;
-	elm_object_text_set(vc->description, name_city);
-	JsonObject *json = getDataByCityName(name_city);
+
+	const char *name_city = elm_object_text_get(vc->entry1);
+	JsonObject *json;
+
+	if (city_id != -1) {
+		json = getDataById(city_id);
+	} else {
+		json = getDataByCityName(name_city);
+	}
+
 	if (json == NULL)
+	{
+		dlog_print(DLOG_ERROR, "IOT", "json NULL");
 		return;
+	}
+
 	if (json_object_get_string_member(json, "cod"))
+	{
 		if (strcmp(json_object_get_string_member(json, "cod"), "404") == 0)
 		{
-			strcat(name_city, " : city not found");
-			elm_object_text_set(vc->description, name_city);
+			elm_object_text_set(vc->description, "Unknown city");
 			elm_object_text_set(vc->temperature, "");
 			elm_object_text_set(vc->cloud, "");
 			elm_object_text_set(vc->wind, "");
@@ -158,7 +164,9 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
 			elm_bg_file_set(vc->bg1, "", "scale");
 			return;
 		}
+	}
 
+	elm_object_text_set(vc->description, name_city);
 	JsonObject *main = json_object_get_object_member(json, "main");
 	if (main != NULL)
 	{
@@ -175,6 +183,7 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
 		if (my_getString(humi) != NULL)
 			elm_object_text_set(vc->humidity, strcat(my_getString(humi), "%"));
 	}
+
 	int visi = json_object_get_int_member(json, "visibility");
 	if (my_getString(visi) != NULL)
 		elm_object_text_set(vc->visibility, strcat(my_getString(visi), "km"));
@@ -197,7 +206,6 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
 
 
 	JsonArray *weat = json_object_get_array_member(json, "weather");
-
 	if (weat != NULL)
 		if (json_array_get_object_element(weat, 0) != NULL)
 		{
@@ -211,18 +219,9 @@ void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void 
 		}
 }
 
-/**
- * @brief The entry has been clicked (mouse press and release).
- *
- * @param vc It is context of the view that this event occurred on. It has all of UI components that this view consist of.
- * @param obj It is UI component itself that emits the event signal.
- * @param event_info
- * 		event_info is NULL
- *
- */
-void view1_entry1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+void view1_button1_onclicked(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
 {
-	elm_object_text_set(vc->entry1, "");
+	update_view(vc);
 }
 
 /**
@@ -280,8 +279,10 @@ void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, v
  * 		Elm_Entry_Change_Info *entry_change_info = (Elm_Entry_Change_Info *) event_info;
  *
  */
-void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)  {
-	citiesList_search(elm_object_text_get(vc->entry1), vc);
+void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+{
+	city_id = -1;
+	cities_list_update(elm_object_text_get(vc->entry1), vc);
 }
 
 /**
@@ -293,8 +294,11 @@ void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, v
  * 		event_info is NULL
  *
  */
-void view1_entry1_onfocused(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
-	evas_object_show(vc->list3);
+void view1_entry1_onfocused(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+{
+	elm_object_text_set(vc->entry1, "");
+	elm_list_clear(vc->list3);
+	evas_object_hide(vc->list3);
 }
 
 /**
@@ -309,6 +313,8 @@ void view1_entry1_onfocused(uib_view1_view_context *vc, Evas_Object *obj, void *
 void view1_list3_onitem_focused(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
 {
 	Elm_Object_Item *selected = (Elm_Object_Item *)event_info;
-	const char *sel = elm_object_item_data_get(selected);
-	elm_object_text_set(vc->entry1, sel);
+	struct cities_ItemData *data = elm_object_item_data_get(selected);
+	elm_object_text_set(vc->entry1, data->name);
+	city_id = data->id;
+	update_view(vc);
 }

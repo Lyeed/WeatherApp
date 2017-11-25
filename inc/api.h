@@ -7,11 +7,17 @@
 #include "uib_view1_view.h"
 
 JsonArray *cities;
-Ecore_Thread *citiesThread;
+int city_id;
 
-JsonArray *citiesList_init();
+JsonArray *cities_list_init();
 JsonObject *getDataByCityName(const char *);
-void citiesList_search(const char *str, uib_view1_view_context *vc);
+JsonObject *getDataById(const int id);
+JsonObject *getDataByCoord(double lat, double lon);
+void cities_list_update(const char *str, uib_view1_view_context *vc);
 
+struct cities_ItemData {
+	const gchar *name;
+	int id;
+};
 
 #endif /* __API_H__ */

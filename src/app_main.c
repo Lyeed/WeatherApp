@@ -63,7 +63,8 @@ int uib_app_run(app_data *user_data, int argc, char **argv)
 	ui_app_add_event_handler(&handlers[APP_EVENT_LANGUAGE_CHANGED], APP_EVENT_LANGUAGE_CHANGED, _on_language_changed_cb, user_data);
 	ui_app_add_event_handler(&handlers[APP_EVENT_REGION_FORMAT_CHANGED], APP_EVENT_REGION_FORMAT_CHANGED, _on_region_format_changed_cb, user_data);
 
-	cities = citiesList_init();
+	cities = cities_list_init();
+	city_id = -1;
 
 	return ui_app_main(argc, argv, &cbs, user_data);
 }

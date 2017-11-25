@@ -104,7 +104,6 @@
 					file_text_format="markup_utf8" disable="false" id="entry1"
 					text="Enter City's name" pack_x="50" pack_y="30" pack_w="595"
 					pack_h="80">
-					<event function_name="view1_entry1_onclicked" signal="clicked" />
 					<event function_name="view1_entry1_onchanged_user" signal="changed,user" />
 					<event function_name="view1_entry1_onfocused" signal="focused" />
 				</entry>
