@@ -1,7 +1,7 @@
 #include "api.h"
 #include <app_resource_manager.h>
 
-JsonArray *cities = NULL;
+uib_view1_view_context *context;
 
 JsonObject *getDataByCityName(const char *city)
 {
@@ -98,60 +98,59 @@ JsonArray *citiesList_init()
 	return NULL;
 }
 
+void cities_list_add_item(void *data)
+{
+	JsonObject *element = (JsonObject *)data;
+	const gchar *name = json_object_get_string_member(element, "name");
+	char title[1024];
+
+	strcpy(title, name);
+	strcat(title, " - ");
+	strcat(title, json_object_get_string_member(element, "country"));
+	if (elm_list_item_append(context->list3, title, NULL, NULL, NULL, name) == NULL) {
+		dlog_print(DLOG_ERROR, "IOT", "Cannot append item to list");
+	}
+	if (!evas_object_visible_get(context->list3))
+	{
+		dlog_print(DLOG_DEBUG, "IOT", "Showing list");
+		elm_list_go(context->list3);
+		evas_object_show(context->list3);
+	}
+}
+
+void cities_thread_fnc(JsonArray *cities, guint index, JsonNode *node, gpointer data)
+{
+	JsonObject *obj = json_node_get_object(node);
+	if (strncmp(json_object_get_string_member(obj, "name"), (char *)data, strlen((char *)data)) == 0)
+	{
+		ecore_main_loop_thread_safe_call_sync((void * ( *)(void *))cities_list_add_item, obj);
+	}
+}
+
+void cities_thread_init(void *data, Ecore_Thread *thread)
+{
+	dlog_print(DLOG_DEBUG, "IOT", "Thread start");
+	json_array_foreach_element(cities, cities_thread_fnc, (char *)data);
+}
+
+void cities_thread_cancel(void *data, Ecore_Thread *thread)
+{
+	dlog_print(DLOG_DEBUG, "IOT", "Thread cancel");
+}
+
+void cities_thread_end(void *data, Ecore_Thread *thread)
+{
+	dlog_print(DLOG_DEBUG, "IOT", "Thread end");
+}
+
 void citiesList_search(const char *str, uib_view1_view_context *vc)
 {
-	Elm_List *list = vc->list3;
-	elm_list_clear(list);
-
-	if (cities == NULL)
+	context = vc;
+	if ((strlen(str) >= 3) && (cities != NULL))
 	{
-		dlog_print(DLOG_DEBUG, "IOT", "Initializing cities list variable");
-		cities = citiesList_init();
-	}
-
-	if (strlen(str) >= 2)
-	{
-		if (cities != NULL)
-		{
-			guint size = json_array_get_length(cities);
-			int count = 0;
-
-			for (guint i = 0; i < size; i++)
-			{
-				JsonObject *obj = json_array_get_object_element(cities, i);
-				const gchar *name = json_object_get_string_member(obj, "name");
-				if (strncmp(name, str, strlen(str)) == 0)
-				{
-					const gchar *country = json_object_get_string_member(obj, "country");
-					char *title = malloc((strlen(name) + strlen(country) + 4) * sizeof(char));
-					if (title)
-					{
-						strcpy(title, name);
-						strcat(title, " - ");
-						strcat(title, country);
-						if (elm_list_item_append(list, title, NULL, NULL, NULL, json_object_get_string_member(obj, "name")) == NULL)
-						{
-							dlog_print(DLOG_ERROR, "IOT", "Cannot append item to list");
-						} else {
-							count++;
-						}
-						free(title);
-					}
-				}
-			}
-
-			if (count >= 1)
-			{
-				elm_list_go(list);
-				evas_object_show(list);
-			} else {
-				evas_object_hide(list);
-			}
-		} else {
-			dlog_print(DLOG_ERROR, "IOT", "Cannot initialize cities variable");
-			evas_object_hide(list);
-		}
+		elm_list_clear(context->list3);
+		ecore_thread_run(cities_thread_init, cities_thread_end, cities_thread_cancel, elm_object_text_get(context->entry1));
 	} else {
-		evas_object_hide(list);
+		evas_object_hide(vc->list3);
 	}
 }

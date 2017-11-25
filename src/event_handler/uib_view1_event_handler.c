@@ -122,7 +122,15 @@ void view1_geolocation_onclicked(uib_view1_view_context *vc, Evas_Object *obj, v
  * 		Elm_Entry_Change_Info *entry_change_info = (Elm_Entry_Change_Info *) event_info;
  *
  */
-void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info) {
+void view1_entry1_onchanged_user(uib_view1_view_context *vc, Evas_Object *obj, void *event_info)
+{
+/*	if (citiesThread)
+	{
+		if (ecore_thread_cancel(citiesThread) == EINA_FALSE)
+		{
+			dlog_print(DLOG_ERROR, "IOT", "Can't stop thread on user text changed");
+		}
+	}*/
 	citiesList_search(elm_object_text_get(vc->entry1), vc);
 }
 
