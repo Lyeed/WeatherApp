@@ -4,11 +4,15 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>F8YuDc6x7KG8kqcZyrFpwvLalJ7Rqkm1nNvpfjes4bE=</DigestValue>
+<DigestValue>74Ih2U15a7j0x3aM1z++C4Y/0eXdMkIn5nh3NIzSRnE=</DigestValue>
 </Reference>
 <Reference URI="bin%2Ftouriste">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>5ch6MlBApo+4Fz1OagxiYFd03lkn5T36DExobTWU82c=</DigestValue>
+<DigestValue>eP59qTuxu0G5u7mvc7NmGj7C8cHOFFlShxV1V1Wf17s=</DigestValue>
+</Reference>
+<Reference URI="res%2Fcity.list.json">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>/cHD8/Nrs6hXCGZeE1O7Ru/Ome1cUuMaGZqZYbmYYD0=</DigestValue>
 </Reference>
 <Reference URI="res%2Fcloudy.jpg">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -63,9 +67,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-bl2jZVAKEiWRsEEExMPE31QEfcu0wb5C8fPqWwJwisWHZNwv0TPtD9RxsUoMX0uA6u01Obn0Ax+4
-qiCQa7RQjOa42PokvmZBQAWr307UdXfmHrWrhdAmitNcrOnAskOiWdrQ/J+YjW0NEGXtMf49mjpY
-gkXdClVBso5ka+8nTN4=
+RbtbMQlZ5apthhOl2ShvR80yZR19huUOxZ+/xBJfPpmYT4tvUdDZzDnIteXdJWOmUGyUlcXD6c4C
+VobDSMLo7hsLszhfa/9tihhGjzSYTKgCv0ZRwb2vkY0OhYW+QhnIJbY/cbvLjRXsuCeykfwWrfRu
+DzrrV8Hjz6Og6sD/Sdk=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

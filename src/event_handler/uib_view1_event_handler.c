@@ -61,7 +61,7 @@ char *double_to_str(double d)
 	char *str = malloc(4096);
 	char buff[50];
 
-	sprintf(buff, "%d", d);
+	sprintf(buff, "%f", d);
 	strcpy(str, buff);
 	return str;
 }

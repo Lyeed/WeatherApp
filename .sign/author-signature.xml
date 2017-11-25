@@ -4,7 +4,11 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="bin%2Ftouriste">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>5ch6MlBApo+4Fz1OagxiYFd03lkn5T36DExobTWU82c=</DigestValue>
+<DigestValue>eP59qTuxu0G5u7mvc7NmGj7C8cHOFFlShxV1V1Wf17s=</DigestValue>
+</Reference>
+<Reference URI="res%2Fcity.list.json">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>/cHD8/Nrs6hXCGZeE1O7Ru/Ome1cUuMaGZqZYbmYYD0=</DigestValue>
 </Reference>
 <Reference URI="res%2Fcloudy.jpg">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -59,9 +63,9 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-LITXtALeT1cttG64G2eF6B2dLyDvx10FHgipx4Til8x2A0UR6MkH5oLiPqeCGGPNPpWFcPQNL5cp
-z/CnshwZu+tQII5pLBKOuPSK5Oytmbq9ZdexHBHMI9tPMjDD7Yal0km2en5YZMqpvh1t124q/zKs
-UP9ShIXqMfvuGmChHfM=
+Fvox8q9j2usvw+xvrhp3cAoXF27VlaDYA5PpGUgN9sHVPOtaQ3c/N5Py9aMoaJZsPKjo2aWU07IW
+tpV/yS3vdQj+zJc+9y6o9k6tat3qI5+QNlwYezfKJcFXQKWwM5LJjE81Yvj3OV3mm18/fivqsd+r
+g+yV4jvp5vKR1/YirlY=
 </SignatureValue>
 <KeyInfo>
 <X509Data>

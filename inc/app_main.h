@@ -5,7 +5,6 @@
 
 #include "g_inc_uib.h"
 #include "uib_views.h"
-#include "geolocation.h"
 #include "api.h"
 #include <app.h>
 #include <Elementary.h>

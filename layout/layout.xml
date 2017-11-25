@@ -85,6 +85,19 @@
 				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
 					pack_h="38" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
 					pack_w="187" pack_x="400" pack_y="800" id="visibility" text=""></label>
+				<label align_v="fill" visible="false" weight_v="1" line_wrap="none"
+					pack_h="39" weight_h="1" ellipsis="false" align_h="fill"
+					wrap_width="0" pack_w="157" pack_x="100" pack_y="900" id="clou"
+					text="Clouds"></label>
+				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
+					pack_h="40" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
+					pack_w="189" pack_x="400" pack_y="900" id="cloud"></label>
+				<list scrollbar_v="false" align_v="fill" visible="false"
+					weight_v="1" weight_h="1" mode="scroll" scrollbar_h="auto" align_h="fill"
+					select_mode="default" multi_select="false" disable="false" id="list3"
+					pack_x="50" pack_y="110" pack_w="667" pack_h="605">
+					<event function_name="view1_list3_onitem_focused" signal="item,focused" />
+				</list>
 				<entry context_menu="true" align_v="fill" visible="true"
 					weight_v="1" editable="true" scroll="false" weight_h="1"
 					single_line="true" align_h="fill" password="false"
@@ -95,31 +108,6 @@
 					<event function_name="view1_entry1_onchanged_user" signal="changed,user" />
 					<event function_name="view1_entry1_onfocused" signal="focused" />
 				</entry>
-				<label align_v="fill" visible="false" weight_v="1" line_wrap="none"
-					pack_h="39" weight_h="1" ellipsis="false" align_h="fill"
-					wrap_width="0" pack_w="157" pack_x="100" pack_y="900" id="clou"
-					text="Clouds"></label>
-				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
-					pack_h="40" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
-					pack_w="207" pack_x="100" pack_y="500" id="label7" text="Pressure"></label>
-				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
-					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
-					pack_w="140" pack_x="400" pack_y="500" id="pressure" text=""></label>
-				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
-					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
-					pack_w="140" pack_x="400" pack_y="600" id="humidity" text=""></label>
-				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
-					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
-					pack_w="140" pack_x="400" pack_y="700" id="wind" text=""></label>
-				<label align_v="fill" visible="true" weight_v="1" line_wrap="none"
-					pack_h="24" weight_h="1" ellipsis="true" align_h="fill" wrap_width="0"
-					pack_w="140" pack_x="400" pack_y="800" id="visibility" text=""></label>
-				<list scrollbar_v="false" align_v="fill" visible="false"
-					weight_v="1" weight_h="1" mode="scroll" scrollbar_h="auto" align_h="fill"
-					select_mode="default" multi_select="false" disable="false" id="list3"
-					pack_x="50" pack_y="110" pack_w="667" pack_h="605">
-					<event function_name="view1_list3_onitem_focused" signal="item,focused" />
-				</list>
 			</grid>
 		</view>
 	</views>
