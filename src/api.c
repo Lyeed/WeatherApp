@@ -126,10 +126,14 @@ void cities_list_add_item(void *data)
 	if (elm_list_item_append(context->list3, title, NULL, NULL, NULL, itemData) == NULL) {
 		dlog_print(DLOG_ERROR, "IOT", "Cannot append item to list");
 	}
+}
+
+void cities_list_show(void *data)
+{
+	elm_list_go(context->list3);
 	if (!evas_object_visible_get(context->list3))
 	{
 		dlog_print(DLOG_DEBUG, "IOT", "Showing list");
-		elm_list_go(context->list3);
 		evas_object_show(context->list3);
 	}
 }
@@ -156,6 +160,7 @@ void cities_thread_cancel(void *data, Ecore_Thread *thread)
 
 void cities_thread_end(void *data, Ecore_Thread *thread)
 {
+	ecore_main_loop_thread_safe_call_sync((void * ( *)(void *))cities_list_show, NULL);
 	dlog_print(DLOG_DEBUG, "IOT", "Thread end");
 }
 

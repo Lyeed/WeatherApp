@@ -316,5 +316,6 @@ void view1_list3_onitem_focused(uib_view1_view_context *vc, Evas_Object *obj, vo
 	struct cities_ItemData *data = elm_object_item_data_get(selected);
 	elm_object_text_set(vc->entry1, data->name);
 	city_id = data->id;
+	elm_object_focus_set(vc->entry1, false);
 	update_view(vc);
 }
