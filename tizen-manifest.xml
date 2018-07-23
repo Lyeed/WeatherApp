@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <manifest xmlns="http://tizen.org/ns/packages" api-version="2.4" package="org.example.touriste" version="1.0.0">
+    <author href="https://github.com/Lyeed/WeatherApp">Gautier JOUSSET &amp; Julien Luino</author>
     <profile name="mobile"/>
     <ui-application appid="org.example.touriste" exec="touriste" multiple="false" nodisplay="false" taskmanage="true" type="capp">
         <label>touriste</label>
